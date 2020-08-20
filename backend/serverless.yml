@@ -339,11 +339,12 @@ resources:
       Type: AWS::SNS::TopicPolicy
       Properties:
         PolicyDocument:
+          Id: Policy
           Version: '2012-10-17'
           Statement:
-            - Effect: Allow
-              Principal:
-                AWS: "*"
+            - Sid: PublicReadWriteBucketPolicy
+              Effect: Allow
+              Principal: '*'
               Action: sns:Publish
               Resource: !Ref NotesTopic
               Condition:
