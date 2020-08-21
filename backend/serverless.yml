@@ -38,7 +38,7 @@ provider:
       Resource: arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.CONNECTIONS_TABLE}
     
 custom:
-  topicName: NotesTopic-${self:provider.stage}
+  topicName: notesTopic-${self:provider.stage}
   documentation:
     api:
       info:
@@ -339,11 +339,9 @@ resources:
       Type: AWS::SNS::TopicPolicy
       Properties:
         PolicyDocument:
-          Id: Policy
-          Version: '2012-10-17'
+          Version: "2012-10-17"
           Statement:
-            - Sid: PublicReadWriteBucketPolicy
-              Effect: Allow
+            - Effect: Allow
               Principal: '*'
               Action: sns:Publish
               Resource: !Ref NotesTopic
@@ -351,12 +349,12 @@ resources:
                 ArnLike:
                   AWS:SourceArn: arn:aws:s3:::${self:provider.environment.S3_BUCKET}
           Topics:
-            - !Ref NotesTopic
+            - Ref: NotesTopic
 
 
     NotesTopic:
       Type: AWS::SNS::Topic
       Properties:
-        DisplayName: Notes bucket topic
+        DisplayName: "Notes bucket topic"
         TopicName: ${self:custom.topicName}
         
