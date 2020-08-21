@@ -348,8 +348,8 @@ resources:
               Condition:
                 ArnLike:
                   AWS:SourceArn: arn:aws:s3:::${self:provider.environment.S3_BUCKET}
-          Topics:
-            - Ref: NotesTopic
+        Topics:
+          - Ref: NotesTopic
 
 
     NotesTopic:

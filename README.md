@@ -8,7 +8,10 @@ A User can create,update,delete and view all the created notes for a day to day 
 - This application allows users to upload a file(for any existing notes, pictures and so on). 
 - This application displays the notes only for a logged in user(User Authenticaion via Auth0).
 - A user would have to authenticate in order to use an notes app.
-- A user will also get the notification for all the current session and the session id is stored in the database table. This is achieved using web socket
+- A user will also get the notification for the current session and the session id is stored in the database table.
+- An id will be shown once the user connects to the websocket:- with below
+  `wscat -c wss://86gz9t29pj.execute-api.us-east-1.amazonaws.com/dev`
+
 
 ## Codebase
 
@@ -19,7 +22,7 @@ A User can create,update,delete and view all the created notes for a day to day 
 
 - All resources in the application are defined in the `serverless.yml` file.
 - Each function has its own set of permissions.
-- Application has sufficient monitoring.
+- Application has sufficient monitoring with logging enabled.
 - HTTP requests are validated.
 
 ## Architecture
@@ -58,6 +61,13 @@ cd client
 npm install
 npm run start
 ```
+
+## Testing
+The application can be tested from frontend directly.
+Another way to test the application is via Postman.
+A test collection is attached named `CapstoneProject-KeepNotes.postman_collection.js`. 
+Upload the tests and run the collection. Results will be displayed accordingly.
+
 
 
 ## Author

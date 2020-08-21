@@ -2,8 +2,11 @@ import { APIGatewayProxyHandler, APIGatewayProxyEvent, APIGatewayProxyResult } f
 import 'source-map-support/register'
 import * as AWS  from 'aws-sdk'
 import { createLogger } from '../../utils/logger'
+import * as AWSXRay from 'aws-xray-sdk'
+const XAWS = AWSXRay.captureAWS(AWS)
 
-const docClient = new AWS.DynamoDB.DocumentClient()
+
+const docClient = new XAWS.DynamoDB.DocumentClient()
 const logger = createLogger('auth')
 
 const connectionsTable = process.env.CONNECTIONS_TABLE
